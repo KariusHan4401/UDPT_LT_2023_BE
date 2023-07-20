@@ -9,6 +9,7 @@ paypal.configure({
 });
 
 const BE = process.env.BE_APP_HOST
+const FE = process.env.REACT_APP_HOST
 
 const create_payment_json = (PayPalData) => {
     let MoneyTotal = PayPalData.MoneyTotal.toFixed(1);
@@ -22,7 +23,7 @@ const create_payment_json = (PayPalData) => {
         },
         "redirect_urls": {
             "return_url": BE + "/paypal-response?success=true",
-            "cancel_url": BE + "/paypal-response?success=fail"
+            "cancel_url": FE + "/complete-order?message=Fail"
         },
         "transactions": [{
             // "item_list": {
